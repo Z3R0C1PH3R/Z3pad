@@ -24,6 +24,7 @@ import subprocess
 import threading
 import time
 
+import boardinfo
 from hidreport import IDLE_REPORT, REPORT_DESC, REPORT_LEN  # noqa: F401
 
 HID_UUID = "00001124-0000-1000-8000-00805f9b34fb"
@@ -56,7 +57,7 @@ SOL_BLUETOOTH = 274
 BT_SECURITY = 4
 BT_SECURITY_MEDIUM = 2
 
-DEVICE_NAME = "RG35XX Plus Gamepad"
+DEVICE_NAME = boardinfo.gamepad_name()
 
 
 def sdp_record(name=DEVICE_NAME):

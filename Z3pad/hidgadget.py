@@ -16,6 +16,7 @@ import subprocess
 import threading
 import time
 
+import boardinfo
 from hidreport import (  # noqa: F401  re-exported for callers of this module
     HAT_CENTER,
     HID_DESCRIPTOR,
@@ -184,7 +185,7 @@ class UsbHidGamepad:
         strings = self.gadget_dir + "/strings/0x409"
         _mkdir(strings)
         _write_attr(strings + "/manufacturer", "Anbernic")
-        _write_attr(strings + "/product", "RG35XX Plus Gamepad")
+        _write_attr(strings + "/product", boardinfo.gamepad_name())
         _write_attr(strings + "/serialnumber", "z3pad0001")
 
         _mkdir(self.config_dir)

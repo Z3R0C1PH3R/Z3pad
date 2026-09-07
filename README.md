@@ -3,7 +3,9 @@ Turns an RG35XX into a gamepad for your PC
 
 Run it, connect the handheld to a computer by USB or Bluetooth, and its own buttons become a normal 16-button HID gamepad. Quit and the device goes straight back to normal.
 
-Tested on the RG35XX Plus, on both the stock Anbernic firmware and [cbepx-me's StockOS Modification](https://github.com/cbepx-me/RG35XX-Plus-Stock-OS-Modification). It needs no packages of any kind: everything it uses is already on the stock image, and the on-screen menu is drawn with nothing but the Python standard library.
+Tested on the RG35XX Plus and the RG35XX SP, on both the stock Anbernic firmware and [cbepx-me's StockOS Modification](https://github.com/cbepx-me/RG35XX-Plus-Stock-OS-Modification). Other H700 handhelds should work too. It needs no packages of any kind: everything it uses is already on the stock image, and the on-screen menu is drawn with nothing but the Python standard library.
+
+Your PC sees the gamepad under your handheld's own model name, so an SP shows up as "RG35xxSP Gamepad" and a Plus as "RG35xx+_P Gamepad". The model is read from the same place the stock System Info screen reads it.
 
 ## Installation/Updating The App
 

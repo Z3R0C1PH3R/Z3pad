@@ -1,0 +1,10 @@
+__pycache__/
+*.py[cod]
+
+# Written on the device at runtime
+*-logfile.txt
+Z3pad/padmap.json
+
+# Local framebuffer capture used for off-device testing
+fb
+*.png

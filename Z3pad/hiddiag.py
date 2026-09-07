@@ -248,18 +248,26 @@ def _importable(name):
         return False
 
 
-def print_brief(usb, bt, joypad):
-    print(f"kernel {RELEASE}")
-    print("")
-    for status, label in RESULTS:
-        print(f"{label[:16]:<17}{status}")
-    print("")
+def print_brief(hid, ffs, bt, joypad):
+    """Verdict first: the per-check list underneath is only for troubleshooting."""
+    usb = hid or ffs
     print(f"USB gamepad:  {'works' if usb and joypad else 'no'}")
     print(f"BT gamepad:   {'works' if bt and joypad else 'no'}")
-    if not joypad:
+    print("")
+    if ffs and not hid:
+        print("The FAIL and WARN below are")
+        print("normal: this kernel has no")
+        print("usb_f_hid, so Z3pad builds")
+        print("USB HID on FunctionFS")
+        print("instead. Nothing is wrong.")
         print("")
-        print("No joypad found, so there")
-        print("is nothing to read.")
+    if not joypad:
+        print("No joypad found, so there is")
+        print("nothing to read buttons from.")
+        print("")
+    print(f"Details (kernel {RELEASE})")
+    for status, label in RESULTS:
+        print(f"{label[:16]:<17}{status}")
 
 
 def main():
@@ -289,7 +297,7 @@ def main():
     joypad = check_joypad()
 
     if BRIEF:
-        print_brief(hid or ffs, bt, joypad)
+        print_brief(hid, ffs, bt, joypad)
         return 0 if (hid or ffs or bt) and joypad else 1
 
     print("\n-- Verdict --")

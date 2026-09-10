@@ -69,7 +69,7 @@ For the full, wordy version of the same report, run `Z3pad/hiddiag.py` over SSH.
 2. **Bluetooth** publishes an HID SDP record through BlueZ's D-Bus `ProfileManager1` and serves the HID control (PSM 17) and interrupt (PSM 19) L2CAP channels. BlueZ's own `input` plugin claims the HID UUID, so if registration is refused, `bthid.py` restarts `bluetoothd` with `--noplugin=input` and puts it back exactly as it was on exit. This means the handheld cannot use its own Bluetooth controllers while Bluetooth gamepad mode is running.
 3. Buttons are read from the handheld's evdev node and grabbed with `EVIOCGRAB`, so presses go to the PC instead of leaking into the launcher underneath.
 4. Only one instance can run at a time (`flock`), because two gadgets fighting over the same USB controller leaves it in a broken state.
-5. The screen is drawn by `display.py`, a standard-library port of the [Z3apps](https://github.com/Z3R0C1PH3R/Z3apps) framebuffer code. Z3apps uses numpy for this, but a 34 MB dependency just to draw text would mean no offline install, so this copies glyph rows out of `font32.bin` straight into an `mmap` of `/dev/fb0`. The output is pixel identical.
+5. The screen is drawn by `display.py`, a standard-library port of the [Z3yt](https://github.com/Z3R0C1PH3R/Z3yt) framebuffer code. Z3yt uses numpy for this, but a 34 MB dependency just to draw text would mean no offline install, so this copies glyph rows out of `font32.bin` straight into an `mmap` of `/dev/fb0`. The output is pixel identical.
 
 ## Known Issues
 
@@ -78,6 +78,6 @@ For the full, wordy version of the same report, run `Z3pad/hiddiag.py` over SSH.
 
 ## Credits
 
-The framebuffer display code and `font32.bin` come from [Z3apps](https://github.com/Z3R0C1PH3R/Z3apps). Licensed GPL-3.0.
+The framebuffer display code and `font32.bin` come from [Z3yt](https://github.com/Z3R0C1PH3R/Z3yt). Licensed GPL-3.0.
 
 ##### If you like my work and want to say thanks, or encourage me to do more, you can [buy me a coffee](https://buymeacoffee.com/z3r0c1ph3r) or a [ko-fi!](https://ko-fi.com/z3r0c1ph3r)

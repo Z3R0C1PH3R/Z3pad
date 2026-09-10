@@ -121,11 +121,14 @@ echo "-- what this kernel supports --"
     echo "diagnostic reported no usable transport, see above"
 
 ok=1
+# Z3apps installs several apps back to back, so it sets Z3APPS_NO_REBOOT and
+# restarts once itself at the end. On its own this script still restarts.
+if [ -n "$Z3APPS_NO_REBOOT" ]; then last="Done"; else last="Rebooting..."; fi
 msg "Installing Z3pad...
 Done
 Install Successful
-Rebooting..."
+$last"
 cd /
 rm -rf /temp
 sleep 5
-reboot
+[ -n "$Z3APPS_NO_REBOOT" ] || reboot
